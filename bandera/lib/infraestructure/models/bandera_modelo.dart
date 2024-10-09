@@ -1,6 +1,3 @@
-
-import 'package:bandera/domain/entities/pais.dart';
-
 class CountryModel {
     final Name name;
     final List<String> tld;
@@ -74,7 +71,7 @@ class CountryModel {
         required this.capitalInfo,
     });
 
-    factory CountryModel.fromJson(Map<String, dynamic> json) => CountryModel(
+    factory CountryModel.fromJsonMap(Map<String, dynamic> json) => CountryModel(
         name: Name.fromJson(json["name"]),
         tld: List<String>.from(json["tld"].map((x) => x)),
         cca2: json["cca2"],
@@ -435,9 +432,4 @@ class Translation {
         "official": official,
         "common": common,
     };
-
-    Pais pasarPais() => Pais(
-      nombre: "Pais",
-      imageUrl: flag
-      );
 }

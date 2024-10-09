@@ -8,6 +8,4 @@ class VentanaPrincipal extends StatelessWidget{
     // TODO: implement build
     throw UnimplementedError();
   }
-
-
 }
