@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_app/domain/entities/message.dart';
 
 class HermassageBubble extends StatelessWidget {
-  const HermassageBubble({super.key});
+  final Message message;
+  const HermassageBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -16,29 +18,31 @@ class HermassageBubble extends StatelessWidget {
             color: colors.secondary,
             borderRadius: BorderRadius.circular(20)
           ),
-          child: const Padding( 
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Text("hola", style: TextStyle(color: Colors.white),),
+          child: Padding( 
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Text(message.text , style: const TextStyle(color: Colors.white),),
         ),
         ),
-        const SizedBox(height: 10,),
-
+        
         //Todo imagen
         const SizedBox(height: 10,),
-        _ImageBubble(),
+        _ImageBubble(imageUrl: message.imageUrl,),
       ],
     );
   }
 }
 
+
 class _ImageBubble extends StatelessWidget{
+  final String? imageUrl;
+  const _ImageBubble({required this.imageUrl});
   
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
-      child: Image.network('https://img.redbull.com/images/c_fill,g_auto,w_450,h_600/q_auto:low,f_auto/redbullcom/2017/07/29/e845daf6-0904-4e66-9b57-43ad2a81b846/foto-tomada-con-el-celular.jpg',
+      child: Image.network(imageUrl!,
       //width: size.width * 0.15,
       //height: size.height * 0.3,
       fit: BoxFit.fill,
