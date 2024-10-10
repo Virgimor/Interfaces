@@ -9,7 +9,8 @@ List<Color> _colorsThemes = [
   Colors.green,
   Colors.yellow,
   Colors.orange,
-  Colors.pink
+  Colors.pink,
+  _customColor
 ];
 
 class AppTheme {
