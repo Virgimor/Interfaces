@@ -1,4 +1,4 @@
-import 'package:country/infraestructure/models/country_model.dart';
+import 'package:country/infraestructure/country_model.dart';
 import 'package:dio/dio.dart';
 
 class BanderaAnswer{

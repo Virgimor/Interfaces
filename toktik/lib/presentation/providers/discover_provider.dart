@@ -7,7 +7,7 @@ class DiscoverProvider extends ChangeNotifier{
 
   bool initialLoading = true;
 
-  List<VideoPost> video =[];
+  List<VideoPost> videos =[];
 
   Future<void> loadNextPage() async{
     await Future.delayed(const Duration(seconds: 2));
@@ -17,8 +17,8 @@ class DiscoverProvider extends ChangeNotifier{
 
     final newVideos = iterableVideos.toList();
 
-    video.addAll(newVideos);
-
+    videos.addAll(newVideos);
+    initialLoading=false;
     notifyListeners();
   }
 
