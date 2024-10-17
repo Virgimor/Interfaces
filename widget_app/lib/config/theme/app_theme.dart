@@ -20,9 +20,9 @@ class AppTheme {
 
   ThemeData theme(){
     return ThemeData(
-      useMaterial3: true,
-      colorSchemeSeed: _colorsThemes[selectedColor]
+      appBarTheme: const AppBarTheme(centerTitle: false),
+      //useMaterial3: true,
+      //colorSchemeSeed: _colorsThemes[selectedColor]
     );
   }
-
 }
