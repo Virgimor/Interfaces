@@ -42,15 +42,21 @@ class CustomListTitle extends StatelessWidget{
 final MenuItems menuItem;
   @override
   Widget build(BuildContext context) {
+
+    final colors = Theme.of(context).colorScheme;
+
     return ListTile(
       title: Text(menuItem.title),
-      leading: Icon(menuItem.icon),
+      leading: Icon(menuItem.icon, color: colors.primary,),
       subtitle: Text(menuItem.subTitle),
-      trailing: const Icon(Icons.arrow_forward_ios_rounded),
+      trailing: Icon(Icons.arrow_forward_ios_rounded, color: colors.primary,),
       onTap: (){
+        /*Navigator.of(context).push(
+          MaterialPageRoute(builder: (context)=> const ButtonsScreen()),
+        );*/
         //Navigator.pushNamed(context, menuItem.link);
         //context.go(menuItem.name);
-        context.pushNamed(menuItem.name);
+        //context.pushNamed(menuItem.name);
         context.push(menuItem.link);
       },
     );
