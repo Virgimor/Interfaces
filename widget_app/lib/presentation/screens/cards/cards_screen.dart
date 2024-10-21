@@ -14,3 +14,21 @@ class CardsScreen  extends StatelessWidget{
     );
   }
 }
+
+class _CardView extends StatelessWidget {
+  const _CardView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class _CardType1 extends StatelessWidget {
+  const _CardType1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}

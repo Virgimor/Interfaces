@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:widget_app/presentation/screens/buttons/buttons_screen.dart';
 import 'package:widget_app/presentation/screens/cards/cards_screen.dart';
+import 'package:widget_app/presentation/screens/progress/progress_screen.dart';
+import 'package:widget_app/presentation/screens/screens.dart';
 
 class MenuItems {
   final String title;
@@ -32,6 +34,20 @@ final appMenuItems = <MenuItems>[
   link: '/cards', 
   icon: Icons.credit_card,
   name: CardsScreen.name),
+
+  MenuItems
+  (title: 'Progress Indicators', 
+  subTitle: 'Generales y Controlados', 
+  link: '/progress', 
+  icon: Icons.refresh_rounded,
+  name: ProgressScreen.name),
+
+  MenuItems
+  (title: 'Snackbars y diálogos', 
+  subTitle: 'Indicadores en pantalla', 
+  link: '/snackbars', 
+  icon: Icons.info_outline,
+  name: SnackbarScreen.name),
 ];
 
 
