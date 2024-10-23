@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:login/screens/login_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -47,7 +46,18 @@ class HomeScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(onPressed: (){
                     if(textControllerUser.text=='Usuario' && textControllerPass.text=='usuario'){
-                      context.pushNamed(LoginScreen.name);
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) =>LoginScreen(usuario:textControllerUser.text))
+                        );
+                    } else{
+                      showDialog(
+                        context: context, 
+                        builder: (context){
+                        return const AlertDialog(
+                          content: Text('Has introducido incorrectamente el nombre o la contraseña'),
+                          );
+                        }
+                      );
                     }
                   }, 
                   child: const Text('Entrar')),
