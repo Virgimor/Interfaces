@@ -15,9 +15,9 @@ final appRouter = GoRouter(
     ),
     GoRoute(
       name: LoginScreen.name,
-      path: '/login',
+      path: '/login/:usuario',
       builder: (BuildContext context, GoRouterState state){
-        return const LoginScreen(usuario: '',);
+        return LoginScreen(usuario: state.pathParameters["usuario"],);
       },
     ),
   ],

@@ -1,24 +1,29 @@
+import 'dart:convert';
+
+List<LoginModels> loginModelsFromJson(String str) => List<LoginModels>.from(json.decode(str).map((x) => LoginModels.fromJson(x)));
+
+String loginModelsToJson(List<LoginModels> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
 class LoginModels {
-    String? id;
-    String? nombre;
-    String? clave;
+    String id;
+    String nombre;
+    String clave;
 
     LoginModels({
-      this.id, 
-      this.nombre, 
-      this.clave}); 
+        required this.id,
+        required this.nombre,
+        required this.clave,
+    });
 
-    LoginModels.fromJson(Map<String, dynamic> json) {
-        id = json['id'];
-        nombre = json['nombre'];
-        clave = json['clave'];
-    }
+    factory LoginModels.fromJson(Map<String, dynamic> json) => LoginModels(
+        id: json["id"],
+        nombre: json["nombre"],
+        clave: json["clave"],
+    );
 
-    Map<String, dynamic> toJson() {
-        final Map<String, dynamic> data = Map<String, dynamic>();
-        data['id'] = id;
-        data['nombre'] = nombre;
-        data['clave'] = clave;
-        return data;
-    }
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "nombre": nombre,
+        "clave": clave,
+    };
 }
