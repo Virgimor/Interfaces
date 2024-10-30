@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "977985404324",
     "project_id": "login-65450",
-    "storage_bucket": "login-65450.appspot.com"
+    "storage_bucket": "login-65450.firebasestorage.app"
   },
   "client": [
     {
@@ -29,6 +29,13 @@
             {
               "client_id": "977985404324-r80fopluvtggk5mhnpldm9qc6q8n8ai3.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "977985404324-jedoigncv286u2beapmsb0rl59c6ulik.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.loginGoogle"
+              }
             }
           ]
         }

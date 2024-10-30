@@ -46,7 +46,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '977985404324',
     projectId: 'login-65450',
     authDomain: 'login-65450.firebaseapp.com',
-    storageBucket: 'login-65450.appspot.com',
+    storageBucket: 'login-65450.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -54,7 +54,7 @@ class DefaultFirebaseOptions {
     appId: '1:977985404324:android:9c857936c6a62531cc1531',
     messagingSenderId: '977985404324',
     projectId: 'login-65450',
-    storageBucket: 'login-65450.appspot.com',
+    storageBucket: 'login-65450.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -62,7 +62,7 @@ class DefaultFirebaseOptions {
     appId: '1:977985404324:ios:9f9728886cb03824cc1531',
     messagingSenderId: '977985404324',
     projectId: 'login-65450',
-    storageBucket: 'login-65450.appspot.com',
+    storageBucket: 'login-65450.firebasestorage.app',
     iosClientId: '977985404324-jedoigncv286u2beapmsb0rl59c6ulik.apps.googleusercontent.com',
     iosBundleId: 'com.example.loginGoogle',
   );
@@ -72,7 +72,7 @@ class DefaultFirebaseOptions {
     appId: '1:977985404324:ios:9f9728886cb03824cc1531',
     messagingSenderId: '977985404324',
     projectId: 'login-65450',
-    storageBucket: 'login-65450.appspot.com',
+    storageBucket: 'login-65450.firebasestorage.app',
     iosClientId: '977985404324-jedoigncv286u2beapmsb0rl59c6ulik.apps.googleusercontent.com',
     iosBundleId: 'com.example.loginGoogle',
   );
@@ -83,6 +83,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '977985404324',
     projectId: 'login-65450',
     authDomain: 'login-65450.firebaseapp.com',
-    storageBucket: 'login-65450.appspot.com',
+    storageBucket: 'login-65450.firebasestorage.app',
   );
+
 }
