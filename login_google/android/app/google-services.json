@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "977985404324",
+    "project_id": "login-65450",
+    "storage_bucket": "login-65450.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977985404324:android:9c857936c6a62531cc1531",
+        "android_client_info": {
+          "package_name": "es.jandula.loginGoogle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977985404324-r80fopluvtggk5mhnpldm9qc6q8n8ai3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD62Y051ZzfwmtIrF2W56V7TZqO5VIcXMI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977985404324-r80fopluvtggk5mhnpldm9qc6q8n8ai3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
