@@ -3,6 +3,7 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart'; // new
 import 'package:flutter/material.dart';
 import 'package:login_google/providers/login_providers.dart';
+import 'package:provider/provider.dart';
 
 import 'home.dart';
 
@@ -11,7 +12,7 @@ class AuthGate extends StatelessWidget {
 
  @override
  Widget build(BuildContext context) {
-  final loginProvider = LoginProviders();
+  final loginProvider = context.watch<LoginProviders>();
   
    return StreamBuilder<User?>(
      stream: FirebaseAuth.instance.authStateChanges(),
@@ -59,7 +60,7 @@ class AuthGate extends StatelessWidget {
            },
          );
        }
-       loginProvider.usuario.add(loginProvider.usu);
+      //loginProvider.usuario.add(loginProvider.usu);
       loginProvider.getUsuarios();
       print(loginProvider.getUsuarios());
       if(loginProvider.usuario.any((element) => element.nombre==FirebaseAuth.instance.currentUser?.email)){

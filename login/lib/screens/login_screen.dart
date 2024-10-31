@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:login/providers/login_providers.dart';
 
 class LoginScreen extends StatelessWidget {
 
   static const String name = 'login_screen';
+  final loginProviders=LoginProviders();
 
-  const LoginScreen({super.key, this.usuario});
+  LoginScreen({super.key, this.usuario});
   final String? usuario;
   @override
   Widget build(BuildContext context) {
@@ -29,45 +31,12 @@ class LoginScreen extends StatelessWidget {
           ),
         ]
       ),
-    );
-  }
-}
-
-class _ControlledProgresIndicator extends StatelessWidget {
-  const _ControlledProgresIndicator();
-
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: Stream.periodic( const Duration( milliseconds: 300 ), (value) {
-        return (value * 2) / 100; // 0.0, 1.0
-
-      }).takeWhile((value) => value < 1 ),
-
-      builder: (context, snapshot) {
-
-        final progressValue = snapshot.data ?? 0;
-
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CircularProgressIndicator( value: progressValue, strokeWidth: 2, backgroundColor: Colors.black12, ),
-              const SizedBox(width: 20,),
-
-              Expanded(
-                child: LinearProgressIndicator(value: progressValue ),
-
-
-              ),
-              Text("$progressValue")
-
-            ],
-          ),
-        );
-
-      },
+      body: FutureBuilder(
+        future: loginProviders.getUsuarios(), 
+        builder: (context, snapshot){
+          z
+        }
+      ),
     );
   }
 }
