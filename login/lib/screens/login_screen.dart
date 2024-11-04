@@ -31,12 +31,7 @@ class LoginScreen extends StatelessWidget {
           ),
         ]
       ),
-      body: FutureBuilder(
-        future: loginProviders.getUsuarios(), 
-        builder: (context, snapshot){
-          z
-        }
-      ),
+      
     );
   }
 }
