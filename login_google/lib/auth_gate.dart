@@ -20,6 +20,7 @@ class AuthGate extends StatelessWidget {
        if (!snapshot.hasData) {
          return SignInScreen(
            providers: [
+            //Este campo es el de nombre y la contraseña
              EmailAuthProvider(),
              GoogleProvider(clientId: "977985404324-r80fopluvtggk5mhnpldm9qc6q8n8ai3.apps.googleusercontent.com"),  // new
            ],
