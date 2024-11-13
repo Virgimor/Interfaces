@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "932739100598",
+    "project_id": "iseneca-91d65",
+    "storage_bucket": "iseneca-91d65.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932739100598:android:8b9f0a351b1284e1671b17",
+        "android_client_info": {
+          "package_name": "es.iesjandula.iseneca"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932739100598-mmrsm3hsobehbth1c8ul7817g1acjkft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjbQybVsf0zOeoj7RrAGTAW2osL2yX_mE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "932739100598-mmrsm3hsobehbth1c8ul7817g1acjkft.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

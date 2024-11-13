@@ -11,7 +11,7 @@ class IncidenciasProviders extends ChangeNotifier{
   final dio = Dio();
 
   Future<void> getIncidencias() async{
-    
+    incidencias.clear();
     final actualizarIncidencias = await Respuesta().getAnswer();
   
     incidencias.addAll(actualizarIncidencias);

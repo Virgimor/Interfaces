@@ -15,10 +15,10 @@ final appRouter = GoRouter(
             }
         ),
         GoRoute(
-            path: '/home_incidencias',
+            path: '/home_incidencias/:usuario',
             name: HomeIncidencias.name,
             builder: (BuildContext context, GoRouterState state){
-                return const HomeIncidencias();
+                return HomeIncidencias(usuario: state.pathParameters["usuario"]);
             }
         ),
     ]

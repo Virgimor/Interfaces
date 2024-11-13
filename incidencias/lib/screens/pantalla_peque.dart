@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:incidencias/providers/incidencias_providers.dart';
@@ -52,7 +53,7 @@ class _PantallaPeque extends State<PantallaPeque>{
           const SizedBox(height: 20,),
           Container(
             width: size.width * 0.8,
-            height: size.height * 0.45,
+            height: size.height * 0.5,
             decoration: BoxDecoration(
               border: Border.all(),
               borderRadius: BorderRadius.circular(20),
@@ -97,10 +98,12 @@ class _PantallaPeque extends State<PantallaPeque>{
                           const Text("Numero de aula"),
                           TextFormField(
                             controller: textControllerNumeroAula,
-                            decoration:const InputDecoration(
-                              border: OutlineInputBorder(),
+                            readOnly: true,
+                            decoration:InputDecoration(
+                              border: const OutlineInputBorder(),
                               filled: true,
-                              fillColor: Color.fromARGB(255, 240, 239, 239)
+                              fillColor: const Color.fromARGB(255, 240, 239, 239),
+                              hintText: FirebaseAuth.instance.currentUser?.email
                             ),
                           ),
                         ],
