@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:incidencias/providers/incidencias_providers.dart';
 import 'package:provider/provider.dart';
 
@@ -74,13 +73,12 @@ class _PantallaPeque extends State<PantallaGrande>{
                     children: [
                       const Text("Nombre del profesor"),
                       TextFormField(
-                        controller: textControllerNombreProfesor,
+                        initialValue: FirebaseAuth.instance.currentUser!.email,
                         readOnly: true,
-                        decoration:InputDecoration(
-                          border: const OutlineInputBorder(),
+                        decoration:const InputDecoration(
+                          border: OutlineInputBorder(),
                           filled: true,
-                          fillColor: const Color.fromARGB(255, 240, 239, 239),
-                          hintText: FirebaseAuth.instance.currentUser?.email
+                          fillColor: Color.fromARGB(255, 240, 239, 239),
                         ),
                       ),
                     ],
@@ -165,7 +163,7 @@ class _PantallaPeque extends State<PantallaGrande>{
                 children: [
                   FilledButton.tonal(
                     onPressed: () {
-                      IncidenciasProviders().crearIncidencias(textControllerNumeroAula.text, textControllerNombreProfesor.text, textControllerFecha.text, textControllerDescripcion.text);
+                      IncidenciasProviders().crearIncidencias(textControllerNumeroAula.text, textControllerFecha.text, textControllerDescripcion.text);
                       listaProvider.getIncidencias();
                     }, 
                     child: const Text("Crear incidencias", style: TextStyle(color: Colors.black),),
@@ -242,7 +240,7 @@ class _PantallaPeque extends State<PantallaGrande>{
         ),
         actions: [
           FilledButton(
-            onPressed: () => context.pop(),
+            onPressed: () => Navigator.pop(context),
             child: const Text("Salir")),
         ],
       )

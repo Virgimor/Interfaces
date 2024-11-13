@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:incidencias/providers/incidencias_providers.dart';
 import 'package:provider/provider.dart';
 
@@ -22,8 +21,7 @@ class _PantallaPeque extends State<PantallaMediana>{
 @override
   void initState() {
     super.initState();
-    final IncidenciasProviders listaProvider=IncidenciasProviders();
-    listaProvider.getIncidencias();
+    
   }
 
   @override
@@ -74,7 +72,7 @@ class _PantallaPeque extends State<PantallaMediana>{
                     children: [
                       const Text("Nombre del profesor"),
                       TextFormField(
-                        controller: textControllerNombreProfesor,
+                        initialValue: FirebaseAuth.instance.currentUser!.email,
                         readOnly: true,
                         decoration:InputDecoration(
                           border: const OutlineInputBorder(),
@@ -165,8 +163,8 @@ class _PantallaPeque extends State<PantallaMediana>{
                 children: [
                   FilledButton.tonal(
                     onPressed: () {
-                      IncidenciasProviders().crearIncidencias(textControllerNumeroAula.text, textControllerNombreProfesor.text, textControllerFecha.text, textControllerDescripcion.text);
-                      listaProvider.getIncidencias();
+                      IncidenciasProviders().crearIncidencias(textControllerNumeroAula.text, textControllerFecha.text, textControllerDescripcion.text);
+                      
                     }, 
                     child: const Text("Crear incidencias", style: TextStyle(color: Colors.black),),
                   ),
@@ -239,7 +237,7 @@ class _PantallaPeque extends State<PantallaMediana>{
         ),
         actions: [
           FilledButton(
-            onPressed: () => context.pop(),
+            onPressed: () => Navigator.pop(context),
             child: const Text("Salir")),
         ],
       ),
