@@ -14,7 +14,7 @@ class IncidenciasProviders extends ChangeNotifier{
   Future<void> getIncidencias() async{
 
     final actualizarIncidencias = await Respuesta().getAnswer();
-  
+    incidencias.clear();
     incidencias.addAll(actualizarIncidencias);
     notifyListeners();
   }
@@ -23,7 +23,7 @@ class IncidenciasProviders extends ChangeNotifier{
     IncidenciasDto nuevaIncidencia = IncidenciasDto(numeroAula: aula, nombreProfesor: FirebaseAuth.instance.currentUser!.email as String, fechaActual: fechaActual, descripcionIncidencia: descripcionIncidencia);
     FormData formData = FormData.fromMap(nuevaIncidencia.toJson());
 
-    await dio.post("http://localhost:8082/incidenciasTic/crear_incidencia",
+    await dio.post("http://localhost:8081/incidenciasTic/crear_incidencia",
     data: formData,
     options: Options(contentType: 'multipart/form-data'));
     

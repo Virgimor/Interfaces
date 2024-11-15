@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:incidencias/providers/incidencias_providers.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class PantallaMediana extends StatefulWidget{
@@ -14,14 +15,15 @@ class PantallaMediana extends StatefulWidget{
 class _PantallaPeque extends State<PantallaMediana>{
 
   TextEditingController textControllerFecha = TextEditingController();
-      var textControllerNumeroAula = TextEditingController();
-    var textControllerNombreProfesor = TextEditingController();
-    var textControllerDescripcion = TextEditingController();
+  var textControllerNumeroAula = TextEditingController();
+  var textControllerNombreProfesor = TextEditingController();
+  var textControllerDescripcion = TextEditingController();
 
 @override
   void initState() {
     super.initState();
-    
+    final IncidenciasProviders listaProvider=IncidenciasProviders();
+    listaProvider.getIncidencias();
   }
 
   @override
@@ -29,6 +31,9 @@ class _PantallaPeque extends State<PantallaMediana>{
 
     var size = MediaQuery.of(context).size;
     final IncidenciasProviders listaProvider=Provider.of<IncidenciasProviders>(context);
+    List listaAulas = ['Biblioteca', 'Salon de actos', '0.7', '0.9', '1.1', '1.2'];
+    String fecha = fechaDeHoy();
+    textControllerFecha.text=fecha;
 
     return Column(
         children: [
@@ -39,7 +44,7 @@ class _PantallaPeque extends State<PantallaMediana>{
             children: [
               FilledButton.tonal(
                 onPressed: () {
-                  listaProvider.getIncidencias;
+                  
                   popUp(context);
                 }, 
                 child: const Text("Listado de incidencias", style: TextStyle(color: Colors.black)),
@@ -97,9 +102,15 @@ class _PantallaPeque extends State<PantallaMediana>{
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text("Numero de aula"),
-                          TextFormField(
-                            controller: textControllerNumeroAula,
-                            decoration:const InputDecoration(
+                          DropdownButtonFormField(
+                            items: listaAulas.map((name){
+                              return DropdownMenuItem(value: name,child: Text(name),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              textControllerNumeroAula.text=value.toString();
+                            },
+                            decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               filled: true,
                               fillColor: Color.fromARGB(255, 240, 239, 239)
@@ -162,8 +173,9 @@ class _PantallaPeque extends State<PantallaMediana>{
                 mainAxisAlignment: MainAxisAlignment.center,   
                 children: [
                   FilledButton.tonal(
-                    onPressed: () {
-                      IncidenciasProviders().crearIncidencias(textControllerNumeroAula.text, textControllerFecha.text, textControllerDescripcion.text);
+                    onPressed: () async {
+                      await IncidenciasProviders().crearIncidencias(textControllerNumeroAula.text, textControllerFecha.text, textControllerDescripcion.text);
+                      await listaProvider.getIncidencias();
                       
                     }, 
                     child: const Text("Crear incidencias", style: TextStyle(color: Colors.black),),
@@ -244,18 +256,34 @@ class _PantallaPeque extends State<PantallaMediana>{
     );
   }
   Future<void> seleccionarFecha(BuildContext context) async{
-        DateTime? datetime = await showDatePicker(
-          context: context, 
-          firstDate: DateTime(1950), 
-          initialDate: DateTime.now(),
-          lastDate: DateTime(2100));
+    DateTime? datetime = await showDatePicker(
+      context: context, 
+      firstDate: DateTime(1950), 
+      initialDate: DateTime.now(),
+      lastDate: DateTime(2100)
+    );
 
-          if(datetime!=null){
-            //String formatterDate = DateFormat('yyyy-MM-dd').format(datetime);
+    if(datetime!=null){
+      //String formatterDate = DateFormat('yyyy-MM-dd').format(datetime);
+      setState(() {
+        textControllerFecha.text=datetime.toString().split(" ")[0];
+      });
+    }
+  }
+  String fechaDeHoy(){
+    DateFormat dateFormat = DateFormat("dd/MM/yyyy");
+    String fecha = dateFormat.format(DateTime.now());
+    return fecha;
+  }
+  
+  void confirmacionCreacion(BuildContext context) {
 
-            setState(() {
-              textControllerFecha.text=datetime.toString().split(" ")[0];
-            });
-          }
-      }
+    ScaffoldMessenger.of(context).clearSnackBars();
+
+    const snackbar = SnackBar(
+      content: Text('La incidecia se ha procesado correctamente', style: TextStyle(fontSize: 20),),
+      duration: Duration(seconds: 3),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackbar);
+  }
 }
