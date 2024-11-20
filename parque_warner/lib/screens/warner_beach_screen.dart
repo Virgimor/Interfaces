@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 
 class WarnerBeachScreen extends StatefulWidget {
+
+static const String name = 'warner_beach_screen';
+
   const WarnerBeachScreen({super.key});
 
   @override
   State<WarnerBeachScreen> createState() => _WarnerBeachScreenState();
 }
 
+final ScrollController scrollController = ScrollController();
+
 class _WarnerBeachScreenState extends State<WarnerBeachScreen> {
+
   @override
   Widget build(BuildContext context) {
 
@@ -93,34 +99,45 @@ class _WarnerBeachScreenState extends State<WarnerBeachScreen> {
                   width: MediaQuery.of(context).size.width,
                   child: Expanded(
                     child: ListView(
-                        padding: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.fromLTRB(10, 15, 10, 0),
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Container(
                                 height: 120,
-                                width: 170,
+                                width: 190,
                                 decoration: BoxDecoration(
                                   color: Colors.grey.shade200,
                                   border: Border.all(color: Colors.white),
                                   borderRadius: BorderRadius.circular(10),
-                                  image: const DecorationImage(image: AssetImage('assets/images/banner_warner.jpg'), fit: BoxFit.cover)
+                                  image: const DecorationImage(image: AssetImage('assets/images/Atracciones.jpeg'), fit: BoxFit.cover),
+                                  gradient: LinearGradient(colors: [
+                                    Colors.black.withOpacity(0.7),
+                                    Colors.transparent,],
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.bottomCenter
+                                  ),
                                 ),
-                                
-                                child: const Text("Atracciones", style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)         
+                                padding: const EdgeInsets.fromLTRB(15, 15, 0, 0),
+                                child: const Text("Atracciones", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),)         
                               ),
                               Container(
                                 height: 120,
-                                width: 170,
+                                width: 190,
                                 decoration: BoxDecoration(
-                                  color: Colors.grey.shade200,
                                   border: Border.all(color: Colors.white),
-                                  borderRadius: BorderRadius.circular(10),
-                                  image: const DecorationImage(image: AssetImage('assets/images/banner_warner.jpg'), fit: BoxFit.cover)
+                                  borderRadius:  BorderRadius.circular(10),
+                                  image: const DecorationImage(image: AssetImage('assets/images/Restaurantes.jpeg'), fit: BoxFit.cover),
+                                  gradient: LinearGradient(colors: [
+                                    Colors.black.withOpacity(0.7),
+                                    Colors.transparent,],
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.bottomCenter
+                                  ),
                                 ),
-                                
-                                child: const Text("Atracciones", style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)         
+                                padding: const EdgeInsets.fromLTRB(15, 15, 0, 0),
+                                child: const Text("Restaurantes", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),)         
                               )
                             ],
                           ),
@@ -129,15 +146,21 @@ class _WarnerBeachScreenState extends State<WarnerBeachScreen> {
                             children: [
                               Container(
                                 height: 150,
-                                width: 350,
+                                width: 390,
                                 decoration: BoxDecoration(
                                   color: Colors.grey.shade200,
                                   border: Border.all(color: Colors.white),
                                   borderRadius: BorderRadius.circular(10),
-                                  image: const DecorationImage(image: AssetImage('assets/images/banner_warner.jpg',), fit: BoxFit.cover)
+                                  image: const DecorationImage(image: AssetImage('assets/images/Mapa.jpeg',), fit: BoxFit.cover),
+                                  gradient: LinearGradient(colors: [
+                                    Colors.black.withOpacity(0.7),
+                                    Colors.transparent,],
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.bottomCenter
+                                  ),
                                 ),
-                                
-                                child: const Text("Mapa", style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)         
+                                padding: const EdgeInsets.fromLTRB(15, 15, 0, 0),
+                                child: const Text("Mapa", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),)         
                               )
                             ]
                           ),
