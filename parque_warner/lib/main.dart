@@ -8,9 +8,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
+      theme: ThemeData(scaffoldBackgroundColor: const Color.fromRGBO(27, 32, 44, 1)),
+      home: const Scaffold(
         body: WarnerBeachScreen(),
       ),
     );
