@@ -18,6 +18,8 @@ class _PantallaPeque extends State<PantallaMediana>{
   var textControllerNumeroAula = TextEditingController();
   var textControllerNombreProfesor = TextEditingController();
   var textControllerDescripcion = TextEditingController();
+  String descripcionErrorText="Falta descripcion";
+  String aulaErrorText="Falta el aula";
 
 @override
   void initState() {
@@ -34,6 +36,7 @@ class _PantallaPeque extends State<PantallaMediana>{
     List listaAulas = ['Biblioteca', 'Salon de actos', '0.7', '0.9', '1.1', '1.2'];
     String fecha = fechaDeHoy();
     textControllerFecha.text=fecha;
+    final descripcionKey = GlobalKey<FormState>();
 
     return Column(
         children: [
@@ -78,7 +81,6 @@ class _PantallaPeque extends State<PantallaMediana>{
                       const Text("Nombre del profesor"),
                       TextFormField(
                         initialValue: FirebaseAuth.instance.currentUser!.email,
-                        readOnly: true,
                         decoration:InputDecoration(
                           border: const OutlineInputBorder(),
                           filled: true,
@@ -109,6 +111,13 @@ class _PantallaPeque extends State<PantallaMediana>{
                             }).toList(),
                             onChanged: (value) {
                               textControllerNumeroAula.text=value.toString();
+                            },
+                            key: descripcionKey,
+                            validator: (value) {
+                              if(value == null || value==textControllerNumeroAula.text.isEmpty){
+                                return null;
+                              }
+                              return null;
                             },
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
@@ -157,12 +166,21 @@ class _PantallaPeque extends State<PantallaMediana>{
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text("Descripción de la incidencia"),
-                          TextFormField(
-                            controller: textControllerDescripcion,
-                            decoration:const InputDecoration(
-                              border: OutlineInputBorder(),
-                              filled: true,
-                              fillColor: Color.fromARGB(255, 240, 239, 239),
+                          Form(
+                            key: descripcionKey,
+                            child: TextFormField(
+                              controller: textControllerDescripcion,
+                              validator: (value) {
+                                if(value == null || value.isEmpty){
+                                  return null;
+                                }
+                                return null;
+                              },
+                              decoration:const InputDecoration(
+                                border: OutlineInputBorder(),
+                                filled: true,
+                                fillColor: Color.fromARGB(255, 240, 239, 239),
+                              ),
                             ),
                           ),
                         ],
@@ -173,10 +191,12 @@ class _PantallaPeque extends State<PantallaMediana>{
                 mainAxisAlignment: MainAxisAlignment.center,   
                 children: [
                   FilledButton.tonal(
-                    onPressed: () async {
-                      await IncidenciasProviders().crearIncidencias(textControllerNumeroAula.text, textControllerFecha.text, textControllerDescripcion.text);
+                    onPressed: () async { 
+                      if(descripcionKey.currentState!.validate()){
+                        await IncidenciasProviders().crearIncidencias(textControllerNumeroAula.text, textControllerFecha.text, textControllerDescripcion.text);
+                        confirmacionCreacion(context);
+                      } 
                       await listaProvider.getIncidencias();
-                      
                     }, 
                     child: const Text("Crear incidencias", style: TextStyle(color: Colors.black),),
                   ),
@@ -279,11 +299,20 @@ class _PantallaPeque extends State<PantallaMediana>{
   void confirmacionCreacion(BuildContext context) {
 
     ScaffoldMessenger.of(context).clearSnackBars();
-
-    const snackbar = SnackBar(
+    
+    if(textControllerDescripcion.text.isNotEmpty){
+      const snackbar = SnackBar(
       content: Text('La incidecia se ha procesado correctamente', style: TextStyle(fontSize: 20),),
       duration: Duration(seconds: 3),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackbar);
+
+    } else{
+      const snackbar = SnackBar(
+      content: Text('La incidecia no se ha podido registrar', style: TextStyle(fontSize: 20),),
+      duration: Duration(seconds: 3)
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackbar);
+    }
   }
 }

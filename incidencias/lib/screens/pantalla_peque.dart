@@ -102,12 +102,10 @@ class _PantallaPeque extends State<PantallaPeque>{
                     children: [
                       const Text("Numero de aula"),
                       DropdownButtonFormField(
-                        
                         items: listaAulas.map((name){
                           return DropdownMenuItem(value: name,child: Text(name),
                           );
                         }).toList(),
-                        value: ,
                         onChanged: (value) {
                           textControllerNumeroAula.text=value.toString();
                         },
