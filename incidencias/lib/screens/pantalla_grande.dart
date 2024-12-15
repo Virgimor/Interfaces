@@ -5,6 +5,9 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class PantallaGrande extends StatefulWidget{
+
+  static const String name = 'pantalla_grande';
+
   const PantallaGrande({super.key});
   
 
